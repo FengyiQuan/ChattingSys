@@ -1,0 +1,14 @@
+<!-- include partials messages.ejs -->
+
+<h1>Helloooooo!!</h1>
+
+<% if (locals.isAuthenticated){ %>
+<p>You are logged in!</p>
+<h1>Username: %><%= locals.user.username %></h1>
+<h1>UserId: <%= locals.user.id %></h1>
+
+<form action="/logout" method="POST">
+  <button type="submit">Log Out</button>
+</form>
+<% } %>
+

@@ -1,0 +1,2 @@
+- `/` home page
+- `/login` login page

@@ -1,0 +1,13 @@
+###
+GET http://localhost:8081/api/getAllMessagesByRoomId/1
+
+### 
+POST http://localhost:8081/api/addMessage
+Content-Type: application/json
+
+{
+    "content": "Hello World 2",
+    "roomId": 1,
+    "senderId":"62932b1c04f897ca2029bd02",
+     "createBy":"2022-05-29T08:13:16.809+00:00"
+}

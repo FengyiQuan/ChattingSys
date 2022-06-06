@@ -1,0 +1,33 @@
+<script>
+  const roomName = '<%= roomName %>';
+  const roomId = '<%= roomId %>';
+  const userId = '2<%#= user.userId %>';
+  const username = 'asdf<%#= user.id %>';
+</script>
+<script defer src="/socket.io/socket.io.js"></script>
+<script defer src="/js/socket-client.js"></script>
+
+<div class="col py-3">
+  <h1>Room Id: <%= locals.roomId %></h1>
+
+  <div id="chat-messages">
+    <% locals.messages.forEach(msg=> { %>
+    <div class="container">
+      <div class="msg-head">
+        <span> <%= msg.senderId %> </span>
+        <span> <%= msg.timestamp %> </span>
+      </div>
+      <div class="msg-body"><%- msg.content %></div>
+    </div>
+    <% }); %>
+  </div>
+  <div class="container">
+    <div id="message-container"></div>
+    <form id="send-container">
+      <input type="text" id="message-input" />
+      <button type="submit" id="send-button">Send</button>
+    </form>
+  </div>
+</div>
+
+

@@ -1,0 +1,5 @@
+- database connection: private msg data vs group msg (only room message supported)
+- socket join room connection
+- if register validation fails, and flashing error messages, sometimes message no show up unless refresh manully. (currently solved by stored in a let, and pass it to the new page when rendering)
+- chat room css html
+- chat room socket join/leaving should support multiple socket,id 
