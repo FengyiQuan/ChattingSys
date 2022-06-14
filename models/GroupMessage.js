@@ -6,6 +6,11 @@ const groupMessageSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  senderName: {
+    type: String,
+    required: true,
+  },
+
   roomId: {
     type: String,
     required: true,

@@ -3,7 +3,9 @@ const router = express.Router();
 
 // main page
 router.get('/', function (req, res) {
-  res.render('index');
+  res.render('index', { layout: 'layouts/side-bar' });
 });
+
+
 
 module.exports = router;

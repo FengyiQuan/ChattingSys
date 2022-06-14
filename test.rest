@@ -1,8 +1,8 @@
 ###
-GET http://localhost:8081/api/getAllMessagesByRoomId/1
+GET http://localhost:8081/api/roomMessage/getAllMessagesByRoomId/:roomId
 
 ### 
-POST http://localhost:8081/api/addMessage
+POST http://localhost:8081/api/roomMessage/addMessage
 Content-Type: application/json
 
 {

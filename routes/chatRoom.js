@@ -13,9 +13,9 @@ const {
 } = require('../controllers/roomController');
 
 // const msgs = [
-//   { content: 'asb', timestamp: 'today', senderId: 0 },
-//   { content: 'qqq', timestamp: 'tmr', senderId: 1 },
-//   { content: 'bbb', timestamp: 'yest', senderId: 2 },
+//   { content: 'asb', createBy: 'today', senderId: 0 },
+//   { content: 'qqq', createBy: 'tmr', senderId: 1 },
+//   { content: 'bbb', createBy: 'yest', senderId: 2  },
 // ];
 
 // start with /chatRoom
@@ -30,22 +30,21 @@ router.get('/:roomId', requireAuthentication, function (req, res) {
     req.flash('error_msg', 'Room not found');
     res.redirect('/');
   } else {
-    res.render('chatRoom', {
-      roomId,
-      roomName: rooms[roomId].roomName, 
-      messages: [],
-    });
+    axios
+      .get(`${deployUrl}/api/room/getAllMessagesByRoomId/${roomId}`)
+      .then((response) => {
+        const messageHistory = response.data;
+        console.log(messageHistory);
+        res.render('chatRoom', {
+          roomId,
+          roomName: rooms[roomId].roomName,
+          messages: messageHistory,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
-  // axios
-  //   .get(`${deployUrl}/api/getAllMessagesByRoomId/${roomId}`)
-  //   .then((response) => {
-  //     const messageHistory = response.data;
-  //     console.log(messageHistory);
-  //     res.render('chatRoom', { messages: messageHistory });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 });
 router.post('/createRoom', requireAuthentication, (req, res) => {
   const roomName = req.body.roomName;

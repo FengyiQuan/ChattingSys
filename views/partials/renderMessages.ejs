@@ -1,0 +1,60 @@
+<% const userId = user.id%>
+<% const renderRobotMsg = (msg) => { %>
+<div class="d-flex align-items-baseline mb-5 justify-content-center">
+  <div class="pe-2">
+    <div>
+      <div class="card card-text d-inline-block p-2 px-3 m-1 small"> <% msg %>   </div>
+    </div>
+  </div>
+</div>
+<%}; %>
+
+<% const renderNewMsg = (newMsg) => {
+    const isSelf = newMsg.senderId === userId;
+    const avatar = `<div class="position-relative avatar">
+                      <img
+                        src=""
+                        class="img-fluid rounded-circle"
+                        alt=""
+                      />
+                      <span
+                        class="position-absolute bottom-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle"
+                      >
+                        <span class="visually-hidden">New alerts</span>
+                      </span>
+                    </div>`;
+    const msg = `<div class="pe-2">
+                    <div>
+                      <div class="small"> ${newMsg.senderName}</div>
+                    </div>
+                    <div>
+                      <div class="card card-text d-inline-block p-2 px-3 m-1">
+                      ${newMsg.content}
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small"> ${newMsg.createBy}</div>
+                    </div>
+                    </div>`;
+    // ${newmMsg.senderId}
+    console.log(newMsg);
+    switch (newMsg.senderId) {
+      case '000000000000000000000000':%> //TODO: robot
+       <%- renderRobotMsg(newMsg.content);%>
+      <%  break;
+      case userId:%> 
+      <div class="d-flex align-items-baseline mb-5 text-end justify-content-end"><%-  ` ${msg} ${avatar}`%></div>
+     <%
+      break;
+    default: %>
+    <div class="d-flex align-items-baseline mb-5"><%-` ${avatar} ${msg}`%></div>
+   <%   break;
+     
+    }
+  
+  }; %> 
+
+
+<% messages.forEach(msg=>{%>
+    <%-    renderNewMsg(msg); %>
+                  <%}) %>

@@ -4,12 +4,13 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const passport = require('passport');
 const path = require('path');
+// const bootstrap = require('bootstrap')
 const { mongoURI, expressSession } = require('./config/settings');
 
 const app = express();
+
 const { server, io } = require('./config/socket-init')(app);
 // console.log(server);
-
 const initPassport = require('./config/passport-init');
 
 // connect to mongoose db
